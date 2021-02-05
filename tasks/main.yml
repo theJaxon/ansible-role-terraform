@@ -1,0 +1,31 @@
+---
+- name: Install jq 
+  package:
+    name: jq 
+    state: present 
+
+- name: Get terraform latest version
+  shell: curl {{ tf_api_url }} | jq -r .current_version
+  args:
+    warn: False 
+  changed_when: False 
+  register: tf_version_var
+
+- name: Override tf_version in defaults
+  set_fact:
+    tf_version: "{{ tf_version_var['stdout'] }}"
+
+- name: Create temporary terraform dir 
+  file:
+    path: "{{ tmp_dir }}"
+    state: directory
+
+- name: Download latest terraform zip file
+  get_url:
+    url: "{{ tf_url }}"
+    dest: "{{ tmp_dir }}/{{ tf_zip }}"
+
+- name: Extract terraform binary 
+  unarchive: 
+    src: "{{ tmp_dir }}/{{ tf_zip }}"
+    dest: /usr/bin/
