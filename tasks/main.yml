@@ -9,11 +9,11 @@
   args:
     warn: False 
   changed_when: False 
-  register: tf_version_var
+  register: tf_version
 
 - name: Override tf_version in defaults
   set_fact:
-    tf_version: "{{ tf_version_var['stdout'] }}"
+    tf_version: "{{ tf_version['stdout'] }}"
 
 - name: Grab terraform latest binary 
   unarchive: 
