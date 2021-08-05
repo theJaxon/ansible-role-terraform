@@ -2,4 +2,3 @@
 tf_api_url: https://checkpoint-api.hashicorp.com/v1/check/terraform
 tf_zip: terraform_{{ tf_version }}_linux_amd64.zip
 tf_url: https://releases.hashicorp.com/terraform/{{ tf_version }}/{{ tf_zip }}
-tmp_dir: /tmp/terraform

@@ -15,17 +15,9 @@
   set_fact:
     tf_version: "{{ tf_version_var['stdout'] }}"
 
-- name: Create temporary terraform dir 
-  file:
-    path: "{{ tmp_dir }}"
-    state: directory
-
-- name: Download latest terraform zip file
-  get_url:
-    url: "{{ tf_url }}"
-    dest: "{{ tmp_dir }}/{{ tf_zip }}"
-
-- name: Extract terraform binary 
+- name: Grab terraform latest binary 
   unarchive: 
-    src: "{{ tmp_dir }}/{{ tf_zip }}"
+    src: "{{ tf_url }}"
     dest: /usr/bin/
+    remote_src: true
+  become: true
