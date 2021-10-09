@@ -16,10 +16,14 @@ Requirements
 Example Playbook
 ----------------
 
+```bash
+ansible-galaxy install git+https://github.com/theJaxon/ansible-role-terraform
+```
+
 ```yml
 - hosts: all
   roles:
-  - terraform
+  - ansible-role-terraform
 ```
 
 License
