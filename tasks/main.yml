@@ -21,3 +21,7 @@
     dest: /usr/bin/
     remote_src: true
   become: true
+  
+- name: Enable terraform autocompletion
+  ansible.builtin.command: terraform -install-autocomplete
+  become: false
